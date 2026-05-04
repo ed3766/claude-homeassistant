@@ -57,6 +57,32 @@ views:
           - entity: binary_sensor.adu_bathroom_cielo_status
             name: Bathroom
 
+      - type: history-graph
+        title: Temperature History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.adu_garage_cielo_temperature
+            name: Garage
+          - entity: sensor.adu_living_room_cielo_temperature
+            name: Living Room
+          - entity: sensor.adu_bedroom_cielo_temperature
+            name: Bedroom
+          - entity: sensor.adu_bathroom_cielo_temperature
+            name: Bathroom
+
+      - type: history-graph
+        title: Humidity History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.adu_garage_cielo_humidity
+            name: Garage
+          - entity: sensor.adu_living_room_cielo_humidity
+            name: Living Room
+          - entity: sensor.adu_bedroom_cielo_humidity
+            name: Bedroom
+          - entity: sensor.adu_bathroom_cielo_humidity
+            name: Bathroom
+
   - title: Garage
     icon: mdi:garage
     cards:
