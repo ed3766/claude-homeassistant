@@ -1,0 +1,293 @@
+title: Home
+views:
+  - title: Overview
+    icon: mdi:home
+    cards:
+      - type: weather-forecast
+        entity: weather.forecast_home
+        forecast_type: daily
+
+      - type: glance
+        title: Energy
+        entities:
+          - entity: sensor.chez_fron_charge
+            name: Battery
+          - entity: sensor.chez_fron_solar_power
+            name: Solar
+          - entity: sensor.chez_fron_load_power
+            name: Load
+          - entity: sensor.chez_fron_site_power
+            name: Grid
+          - entity: binary_sensor.chez_fron_grid_status
+            name: Grid Status
+          - entity: binary_sensor.chez_fron_charging
+            name: Charging
+
+      - type: glance
+        title: Climate
+        entities:
+          - entity: sensor.home_main_floor_ecobee_temperature
+            name: Main Floor
+          - entity: sensor.home_downstairs_ecobee_temperature
+            name: Downstairs
+          - entity: sensor.home_main_floor_ecobee_humidity
+            name: Humidity
+          - entity: sensor.home_kitchen_ecobee_temperature
+            name: Kitchen
+          - entity: sensor.home_living_room_ecobee_temperature
+            name: Living Room
+          - entity: sensor.home_office_ecobee_temperature
+            name: Office
+
+      - type: history-graph
+        title: Temperature History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.home_main_floor_ecobee_temperature
+            name: Main Floor
+          - entity: sensor.home_downstairs_ecobee_temperature
+            name: Downstairs
+          - entity: sensor.home_kitchen_ecobee_temperature
+            name: Kitchen
+          - entity: sensor.home_living_room_ecobee_temperature
+            name: Living Room
+          - entity: sensor.home_office_ecobee_temperature
+            name: Office
+
+  - title: Climate
+    icon: mdi:thermometer
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: thermostat
+            entity: climate.home_main_floor_ecobee
+            name: Main Floor
+          - type: thermostat
+            entity: climate.home_downstairs_ecobee
+            name: Downstairs
+
+      - type: thermostat
+        entity: climate.home_upstairs_ecobee
+        name: Upstairs
+
+      - type: glance
+        title: Room Temperatures
+        entities:
+          - entity: sensor.home_kitchen_ecobee_temperature
+            name: Kitchen
+          - entity: sensor.home_living_room_ecobee_temperature
+            name: Living Room
+          - entity: sensor.home_office_ecobee_temperature
+            name: Office
+          - entity: sensor.home_zack_bedroom_ecobee_temperature
+            name: Zack's Room
+          - entity: sensor.home_austin_bedroom_ecobee_temperature
+            name: Austin's Room
+
+      - type: glance
+        title: Occupancy
+        entities:
+          - entity: binary_sensor.home_kitchen_ecobee_occupancy
+            name: Kitchen
+          - entity: binary_sensor.home_living_room_ecobee_occupancy
+            name: Living Room
+          - entity: binary_sensor.home_living_room_2_ecobee_occupancy
+            name: TV Room
+          - entity: binary_sensor.home_office_ecobee_occupancy
+            name: Office
+          - entity: binary_sensor.home_downstairs_ecobee_occupancy
+            name: Downstairs
+          - entity: binary_sensor.home_upstairs_ecobee_occupancy
+            name: Upstairs
+          - entity: binary_sensor.home_zack_bedroom_ecobee_occupancy
+            name: Zack's Room
+          - entity: binary_sensor.home_austin_bedroom_ecobee_occupancy
+            name: Austin's Room
+
+      - type: history-graph
+        title: Temperature History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.home_main_floor_ecobee_temperature
+            name: Main Floor
+          - entity: sensor.home_downstairs_ecobee_temperature
+            name: Downstairs
+          - entity: sensor.home_kitchen_ecobee_temperature
+            name: Kitchen
+          - entity: sensor.home_living_room_ecobee_temperature
+            name: Living Room
+          - entity: sensor.home_office_ecobee_temperature
+            name: Office
+          - entity: sensor.home_zack_bedroom_ecobee_temperature
+            name: Zack's Room
+          - entity: sensor.home_austin_bedroom_ecobee_temperature
+            name: Austin's Room
+
+  - title: Energy
+    icon: mdi:lightning-bolt
+    cards:
+      - type: entities
+        title: Powerwall
+        entities:
+          - entity: sensor.chez_fron_charge
+            name: Battery Charge
+          - entity: sensor.chez_fron_backup_reserve
+            name: Backup Reserve
+          - entity: sensor.chez_fron_solar_power
+            name: Solar Power
+          - entity: sensor.chez_fron_battery_power
+            name: Battery Power
+          - entity: sensor.chez_fron_load_power
+            name: Home Load
+          - entity: sensor.chez_fron_site_power
+            name: Grid Power
+          - entity: binary_sensor.chez_fron_grid_status
+            name: Grid Status
+          - entity: binary_sensor.chez_fron_charging
+            name: Charging
+          - entity: binary_sensor.chez_fron_grid_services_active
+            name: Grid Services
+          - entity: switch.chez_fron_off_grid_operation
+            name: Off-Grid Mode
+
+      - type: history-graph
+        title: Power History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.chez_fron_solar_power
+            name: Solar
+          - entity: sensor.chez_fron_battery_power
+            name: Battery
+          - entity: sensor.chez_fron_load_power
+            name: Load
+          - entity: sensor.chez_fron_site_power
+            name: Grid
+
+      - type: entities
+        title: SPAN Panel A
+        entities:
+          - entity: sensor.home_span_panel_a_current_power
+            name: Current Power
+          - entity: sensor.home_span_panel_a_main_meter_consumed_energy
+            name: Consumed Energy
+          - entity: sensor.home_span_panel_a_main_meter_produced_energy
+            name: Produced Energy
+          - entity: sensor.home_span_panel_a_pv_power
+            name: Solar Power
+          - entity: sensor.home_span_panel_a_battery_battery_level
+            name: Battery Level
+          - entity: sensor.home_span_panel_a_battery_battery_power
+            name: Battery Power
+          - entity: sensor.home_span_panel_a_battery_state_of_energy
+            name: State of Energy
+
+      - type: entities
+        title: SPAN Panel B
+        entities:
+          - entity: sensor.home_span_panel_b_current_power
+            name: Current Power
+          - entity: sensor.home_span_panel_b_main_meter_consumed_energy
+            name: Consumed Energy
+          - entity: sensor.home_span_panel_b_main_meter_produced_energy
+            name: Produced Energy
+          - entity: sensor.home_span_panel_b_pv_power
+            name: Solar Power
+          - entity: sensor.home_span_panel_battery_battery_level
+            name: Battery Level
+          - entity: sensor.home_span_panel_battery_battery_power
+            name: Battery Power
+          - entity: sensor.home_span_panel_battery_state_of_energy
+            name: State of Energy
+
+  - title: Media & Devices
+    icon: mdi:television-play
+    cards:
+      - type: media-control
+        entity: media_player.home_living_room_samsung_frame
+
+      - type: entities
+        title: Litter Robot
+        entities:
+          - entity: vacuum.litter_robot_4_litter_box
+            name: Litter Box
+          - entity: sensor.litter_robot_4_waste_drawer
+            name: Waste Drawer
+          - entity: sensor.litter_robot_4_litter_level
+            name: Litter Level
+          - entity: sensor.litter_robot_4_pet_weight
+            name: Pet Weight
+          - entity: sensor.litter_robot_4_status_code
+            name: Status
+          - entity: switch.litter_robot_4_panel_lockout
+            name: Panel Lockout
+          - entity: select.litter_robot_4_clean_cycle_wait_time_minutes
+            name: Clean Cycle Wait
+
+      - type: entities
+        title: Irrigation
+        entities:
+          - entity: binary_sensor.home_rachio_rain
+            name: Rain Sensor
+          - entity: switch.rachio_3766_standby
+            name: Standby
+          - entity: switch.rachio_3766_rain_delay
+            name: Rain Delay
+          - entity: switch.rachio_3766_grass_front_schedule
+            name: Front Lawn Schedule
+
+  - title: Systems
+    icon: mdi:server
+    cards:
+      - type: entities
+        title: Synology DS416
+        entities:
+          - entity: sensor.ds416_cpu_utilization_total
+            name: CPU Usage
+          - entity: sensor.ds416_memory_usage_real
+            name: Memory Usage
+          - entity: sensor.ds416_temperature
+            name: Temperature
+          - entity: sensor.ds416_volume_1_used_space
+            name: Volume Used
+          - entity: sensor.ds416_volume_1_status
+            name: Volume Status
+          - entity: binary_sensor.ds416_security_status
+            name: Security Status
+          - entity: sensor.ds416_drive_1_status
+            name: Drive 1
+          - entity: sensor.ds416_drive_2_status
+            name: Drive 2
+          - entity: sensor.ds416_drive_3_status
+            name: Drive 3
+          - entity: sensor.ds416_drive_4_status
+            name: Drive 4
+
+      - type: entities
+        title: Phone (OBiHai)
+        entities:
+          - entity: sensor.obihai_sp1_service_status
+            name: Line 1 Status
+          - entity: sensor.obihai_sp2_service_status
+            name: Line 2 Status
+          - entity: sensor.obihai_obitalk_service_status
+            name: OBiTalk Status
+          - entity: sensor.obihai_phone1_port
+            name: Phone 1
+          - entity: sensor.obihai_phone2_port
+            name: Phone 2
+          - entity: sensor.obihai_call_direction
+            name: Call Direction
+
+      - type: entities
+        title: Brother HL-L2460DW
+        entities:
+          - entity: sensor.hl_l2460dw_status
+            name: Status
+          - entity: sensor.hl_l2460dw_black_toner_remaining
+            name: Toner Remaining
+          - entity: sensor.hl_l2460dw_drum_remaining_lifetime
+            name: Drum Lifetime
+          - entity: sensor.hl_l2460dw_drum_remaining_pages
+            name: Drum Pages Left
+          - entity: sensor.hl_l2460dw_page_counter
+            name: Total Pages
