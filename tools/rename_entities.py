@@ -157,6 +157,27 @@ RENAME_MAP = {
 
     # --- Person ---
     "person.ed3766": "person.ed",
+
+    # --- SPAN Panel A (nt-2226-c1fwg) battery/stats: fix _2_ → _a_ ---
+    "binary_sensor.home_span_panel_2_battery_bess_connected":  "binary_sensor.home_span_panel_a_battery_bess_connected",
+    "sensor.home_span_panel_2_battery_battery_level":          "sensor.home_span_panel_a_battery_battery_level",
+    "sensor.home_span_panel_2_battery_battery_power":          "sensor.home_span_panel_a_battery_battery_power",
+    "sensor.home_span_panel_2_battery_firmware_version":       "sensor.home_span_panel_a_battery_firmware_version",
+    "sensor.home_span_panel_2_battery_model":                  "sensor.home_span_panel_a_battery_model",
+    "sensor.home_span_panel_2_battery_nameplate_capacity":     "sensor.home_span_panel_a_battery_nameplate_capacity",
+    "sensor.home_span_panel_2_battery_serial_number":          "sensor.home_span_panel_a_battery_serial_number",
+    "sensor.home_span_panel_2_battery_state_of_energy":        "sensor.home_span_panel_a_battery_state_of_energy",
+    "sensor.home_span_panel_2_battery_vendor":                 "sensor.home_span_panel_a_battery_vendor",
+    "sensor.home_span_panel_2_dsm_state":                      "sensor.home_span_panel_a_dsm_state",
+    "sensor.home_span_panel_2_feed_through_net_energy":        "sensor.home_span_panel_a_feed_through_net_energy",
+    "sensor.home_span_panel_2_l1_voltage":                     "sensor.home_span_panel_a_l1_voltage",
+    "sensor.home_span_panel_2_l2_voltage":                     "sensor.home_span_panel_a_l2_voltage",
+    "sensor.home_span_panel_2_main_breaker_rating":            "sensor.home_span_panel_a_main_breaker_rating",
+    "sensor.home_span_panel_2_main_meter_net_energy":          "sensor.home_span_panel_a_main_meter_net_energy",
+    "sensor.home_span_panel_2_pv_nameplate_capacity":          "sensor.home_span_panel_a_pv_nameplate_capacity",
+    "sensor.home_span_panel_2_upstream_l1_current":            "sensor.home_span_panel_a_upstream_l1_current",
+    "sensor.home_span_panel_2_upstream_l2_current":            "sensor.home_span_panel_a_upstream_l2_current",
+    "sensor.home_span_panel_2_vendor_cloud":                   "sensor.home_span_panel_a_vendor_cloud",
 }
 
 SPAN_DOMAINS = {"sensor", "binary_sensor", "switch", "select", "button", "update", "number"}
@@ -220,9 +241,10 @@ def main():
 
     rename_map = {**RENAME_MAP, **build_span_renames(existing_ids)}
 
-    # Validate — find conflicts
-    new_ids = set(rename_map.values())
-    conflicts = new_ids & (existing_ids - set(rename_map.keys()))
+    # Only check conflicts for renames where the source entity still exists
+    active_renames = {k: v for k, v in rename_map.items() if k in existing_ids}
+    new_ids = set(active_renames.values())
+    conflicts = new_ids & (existing_ids - set(active_renames.keys()))
     if conflicts:
         print("❌ Target entity IDs already exist (not being renamed):")
         for c in sorted(conflicts):
