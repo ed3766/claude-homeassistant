@@ -12,6 +12,13 @@ scene: !include scenes.yaml
 
 lovelace:
   dashboards:
+    home-dashboard:
+      mode: yaml
+      filename: home_dashboard.yaml
+      title: Home
+      icon: mdi:home
+      show_in_sidebar: true
+      require_admin: false
     garage-dashboard:
       mode: yaml
       filename: garage_dashboard.yaml
