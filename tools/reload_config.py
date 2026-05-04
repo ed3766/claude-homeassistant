@@ -6,10 +6,9 @@ have been pushed to the instance.
 """
 
 import os
+import subprocess
 import sys
 from pathlib import Path
-
-import requests
 
 
 def load_env_file():
@@ -26,10 +25,8 @@ def load_env_file():
 
 def reload_config():
     """Reload Home Assistant core configuration via API."""
-    # Load environment variables
     load_env_file()
 
-    # Get configuration
     ha_url = os.getenv("HA_URL", "http://homeassistant.local:8123")
     token = os.getenv("HA_TOKEN", "")
 
@@ -39,36 +36,36 @@ def reload_config():
         print("   Get your token from Home Assistant Profile page")
         return False
 
-    # Prepare API request
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-
     url = f"{ha_url}/api/services/homeassistant/reload_core_config"
 
-    try:
-        print("🔄 Reloading Home Assistant core configuration...")
-        response = requests.post(url, headers=headers, timeout=30)
+    print("🔄 Reloading Home Assistant core configuration...")
+    result = subprocess.run(
+        [
+            "curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
+            "-X", "POST", url,
+            "-H", f"Authorization: Bearer {token}",
+            "-H", "Content-Type: application/json",
+            "--connect-timeout", "10",
+            "--max-time", "30",
+        ],
+        capture_output=True,
+        text=True,
+    )
 
-        if response.status_code == 200:
-            print("✅ Configuration reloaded successfully!")
-            return True
-        else:
-            print(f"❌ Failed to reload configuration: {response.status_code}")
-            if response.text:
-                print(f"   Response: {response.text}")
-            return False
-
-    except requests.exceptions.Timeout:
-        print("❌ Timeout: Home Assistant took too long to respond")
-        print("   This may indicate a configuration error preventing reload")
-        return False
-
-    except requests.exceptions.ConnectionError:
+    if result.returncode != 0:
         print(f"❌ Connection error: Cannot reach Home Assistant at {ha_url}")
         print("   Check that Home Assistant is running and accessible")
         return False
 
-    except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+    status_code = result.stdout.strip()
+    if status_code == "200":
+        print("✅ Configuration reloaded successfully!")
+        return True
+    elif status_code == "401":
+        print("❌ Unauthorized: HA_TOKEN is invalid or expired")
+        return False
+    else:
+        print(f"❌ Failed to reload configuration: HTTP {status_code}")
         return False
 
 
