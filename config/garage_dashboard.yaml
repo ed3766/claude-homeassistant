@@ -1,0 +1,262 @@
+title: ADU
+views:
+  - title: Overview
+    icon: mdi:home-outline
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: thermostat
+            entity: climate.adu_garage_cielo
+            name: Garage
+          - type: thermostat
+            entity: climate.adu_living_room_cielo
+            name: Living Room
+
+      - type: horizontal-stack
+        cards:
+          - type: thermostat
+            entity: climate.adu_bedroom_cielo
+            name: Bedroom
+          - type: thermostat
+            entity: climate.adu_bathroom_cielo
+            name: Bathroom
+
+      - type: glance
+        title: Current Conditions
+        entities:
+          - entity: sensor.adu_garage_cielo_temperature
+            name: Garage
+          - entity: sensor.adu_living_room_cielo_temperature
+            name: Living Room
+          - entity: sensor.adu_bedroom_cielo_temperature
+            name: Bedroom
+          - entity: sensor.adu_bathroom_cielo_temperature
+            name: Bathroom
+
+      - type: glance
+        title: Humidity
+        entities:
+          - entity: sensor.adu_garage_cielo_humidity
+            name: Garage
+          - entity: sensor.adu_living_room_cielo_humidity
+            name: Living Room
+          - entity: sensor.adu_bedroom_cielo_humidity
+            name: Bedroom
+          - entity: sensor.adu_bathroom_cielo_humidity
+            name: Bathroom
+
+      - type: glance
+        title: Connectivity
+        entities:
+          - entity: binary_sensor.adu_garage_cielo_status
+            name: Garage
+          - entity: binary_sensor.adu_living_room_cielo_status
+            name: Living Room
+          - entity: binary_sensor.adu_bedroom_cielo_status
+            name: Bedroom
+          - entity: binary_sensor.adu_bathroom_cielo_status
+            name: Bathroom
+
+  - title: Garage
+    icon: mdi:garage
+    cards:
+      - type: thermostat
+        entity: climate.adu_garage_cielo
+        name: Garage Climate
+
+      - type: glance
+        title: Current Conditions
+        entities:
+          - entity: sensor.adu_garage_cielo_temperature
+            name: Temperature
+          - entity: sensor.adu_garage_cielo_humidity
+            name: Humidity
+          - entity: sensor.adu_garage_cielo_target_temperature
+            name: Target Temp
+          - entity: binary_sensor.adu_garage_cielo_status
+            name: Connected
+
+      - type: entities
+        title: Controls
+        entities:
+          - entity: switch.adu_garage_cielo_power
+            name: Power
+          - entity: select.adu_garage_cielo_hvac
+            name: Mode
+          - entity: select.adu_garage_cielo_fan
+            name: Fan Speed
+          - entity: select.adu_garage_cielo_swing
+            name: Swing
+          - entity: select.adu_garage_cielo_preset
+            name: Preset
+          - entity: number.adu_garage_cielo_target_temperature
+            name: Target Temperature
+          - entity: number.adu_garage_cielo_temperature_offset
+            name: Temperature Offset
+
+      - type: entities
+        title: Display
+        entities:
+          - entity: switch.adu_garage_cielo_back_light
+            name: Back Light
+          - entity: number.adu_garage_cielo_back_light_brightness
+            name: Brightness
+
+      - type: history-graph
+        title: Temperature & Humidity History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.adu_garage_cielo_temperature
+            name: Temperature
+          - entity: sensor.adu_garage_cielo_humidity
+            name: Humidity
+
+  - title: Living Room
+    icon: mdi:sofa
+    cards:
+      - type: thermostat
+        entity: climate.adu_living_room_cielo
+        name: Living Room Climate
+
+      - type: glance
+        title: Current Conditions
+        entities:
+          - entity: sensor.adu_living_room_cielo_temperature
+            name: Temperature
+          - entity: sensor.adu_living_room_cielo_humidity
+            name: Humidity
+          - entity: sensor.adu_living_room_cielo_target_temperature
+            name: Target Temp
+          - entity: binary_sensor.adu_living_room_cielo_status
+            name: Connected
+
+      - type: entities
+        title: Controls
+        entities:
+          - entity: select.adu_living_room_cielo_hvac
+            name: Mode
+          - entity: select.adu_living_room_cielo_fan
+            name: Fan Speed
+          - entity: select.adu_living_room_cielo_swing
+            name: Swing
+          - entity: select.adu_living_room_cielo_preset
+            name: Preset
+          - entity: number.adu_living_room_cielo_target_temperature
+            name: Target Temperature
+          - entity: number.adu_living_room_cielo_temperature_offset
+            name: Temperature Offset
+
+      - type: entities
+        title: Display
+        entities:
+          - entity: number.adu_living_room_cielo_back_light_brightness
+            name: Brightness
+
+      - type: history-graph
+        title: Temperature & Humidity History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.adu_living_room_cielo_temperature
+            name: Temperature
+          - entity: sensor.adu_living_room_cielo_humidity
+            name: Humidity
+
+  - title: Bedroom
+    icon: mdi:bed
+    cards:
+      - type: thermostat
+        entity: climate.adu_bedroom_cielo
+        name: Bedroom Climate
+
+      - type: glance
+        title: Current Conditions
+        entities:
+          - entity: sensor.adu_bedroom_cielo_temperature
+            name: Temperature
+          - entity: sensor.adu_bedroom_cielo_humidity
+            name: Humidity
+          - entity: sensor.adu_bedroom_cielo_target_temperature
+            name: Target Temp
+          - entity: binary_sensor.adu_bedroom_cielo_status
+            name: Connected
+
+      - type: entities
+        title: Controls
+        entities:
+          - entity: select.adu_bedroom_cielo_hvac
+            name: Mode
+          - entity: select.adu_bedroom_cielo_fan
+            name: Fan Speed
+          - entity: select.adu_bedroom_cielo_swing
+            name: Swing
+          - entity: select.adu_bedroom_cielo_preset
+            name: Preset
+          - entity: number.adu_bedroom_cielo_target_temperature
+            name: Target Temperature
+          - entity: number.adu_bedroom_cielo_temperature_offset
+            name: Temperature Offset
+
+      - type: entities
+        title: Display
+        entities:
+          - entity: number.adu_bedroom_cielo_back_light_brightness
+            name: Brightness
+
+      - type: history-graph
+        title: Temperature & Humidity History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.adu_bedroom_cielo_temperature
+            name: Temperature
+          - entity: sensor.adu_bedroom_cielo_humidity
+            name: Humidity
+
+  - title: Bathroom
+    icon: mdi:shower
+    cards:
+      - type: thermostat
+        entity: climate.adu_bathroom_cielo
+        name: Bathroom Climate
+
+      - type: glance
+        title: Current Conditions
+        entities:
+          - entity: sensor.adu_bathroom_cielo_temperature
+            name: Temperature
+          - entity: sensor.adu_bathroom_cielo_humidity
+            name: Humidity
+          - entity: sensor.adu_bathroom_cielo_target_temperature
+            name: Target Temp
+          - entity: binary_sensor.adu_bathroom_cielo_status
+            name: Connected
+
+      - type: entities
+        title: Controls
+        entities:
+          - entity: select.adu_bathroom_cielo_hvac
+            name: Mode
+          - entity: select.adu_bathroom_cielo_fan
+            name: Fan Speed
+          - entity: select.adu_bathroom_cielo_swing
+            name: Swing
+          - entity: select.adu_bathroom_cielo_preset
+            name: Preset
+          - entity: number.adu_bathroom_cielo_target_temperature
+            name: Target Temperature
+          - entity: number.adu_bathroom_cielo_temperature_offset
+            name: Temperature Offset
+
+      - type: entities
+        title: Display
+        entities:
+          - entity: number.adu_bathroom_cielo_back_light_brightness
+            name: Brightness
+
+      - type: history-graph
+        title: Temperature & Humidity History
+        hours_to_show: 24
+        entities:
+          - entity: sensor.adu_bathroom_cielo_temperature
+            name: Temperature
+          - entity: sensor.adu_bathroom_cielo_humidity
+            name: Humidity
